@@ -1,0 +1,120 @@
+h1. NAME
+
+*mysql-connector-java-log* :: *Log4j* and *SLF4j* implementation of *MySQL Connector/J* (JDBC driver) logging interface.
+
+h1. DESCRIPTION
+
+This package implements  "Log4j":http://logging.apache.org/log4j/1.2/ and "SLF4j":http://www.slf4j.org/ logging interface of "MySQL Connector/J":http://dev.mysql.com/downloads/connector/j/ JDBC driver.
+
+h1. NAME
+
+*mysql-connector-java-log* :: *Log4j* and *SLF4j* implementation of *MySQL Connector/J* (JDBC driver) logging interface.
+
+h1. DESCRIPTION
+
+This package implements  "Log4j":http://logging.apache.org/log4j/1.2/ and "SLF4j":http://www.slf4j.org/ logging interface of "MySQL Connector/J":http://dev.mysql.com/downloads/connector/j/ JDBC driver.
+
+h1. BUILD
+
+You need "Maven":http://maven.apache.org/ and "Java JDK":http://java.sun.com to build this package.
+
+To build, enter source directory, and type:
+
+<pre><code>
+ mvn clean package
+</code></pre>
+
+JAR is placed in *target/* directory.
+
+h1. DEPLOY
+
+Install JAR file in Java application's CLASSPATH, configure MySQL JDBC connector's
+URL and optionally configure your logger (this mostly applies to Log4j).
+
+h1. IMPLEMENTATIONS
+
+h2. Log4j
+
+Log4j configuration:
+
+<pre>
+ # set logging level and appender
+ log4j.logger.si.planet9.mysql=DEBUG, appMySQL
+ 
+ # configure mysql appender
+ log4j.appender.appMySQL=org.apache.log4j.DailyRollingFileAppender
+ log4j.appender.appMySQL.File=${user.home}/logs/mysql-jdbc-driver.log
+ log4j.appender.appMySQL.DatePattern='.'yyyyMMdd
+ log4j.appender.appMySQL.layout=org.apache.log4j.PatternLayout
+ log4j.appender.appMySQL.layout.ConversionPattern=[%d{dd MMM yyyy HH:mm:ss.SSS}] %-5p [%c{1}]: %m%n
+</pre>
+
+JDBC configuration:
+<pre><code>
+ jdbc.class=com.mysql.jdbc.Driver
+ jdbc.url=jdbc:mysql://localhost:3306/database?autoReconnect=true&logSlowQueries=true&slowQueryThresholdMillis=500&dumpQueriesOnException=true&gatherPerfMetrics=true&useUsageAdvisor=true&explainSlowQueries=true&reportMetricsIntervalMillis=60000&logger=si.planet9.mysql.Log4j
+</code></pre>
+
+h2. SLF4j
+
+JDBC configuration:
+<pre>
+ jdbc.class=com.mysql.jdbc.Driver
+ jdbc.url=jdbc:mysql://localhost:3306/database?autoReconnect=true&logSlowQueries=true&slowQueryThresholdMillis=500&dumpQueriesOnException=true&gatherPerfMetrics=true&useUsageAdvisor=true&explainSlowQueries=true&reportMetricsIntervalMillis=60000&logger=si.planet9.mysql.Slf4j
+</pre>
+
+h1. SAMPLE LOGGING OUTPUT
+
+Sample output by log4j:
+
+<pre>
+ [25 Jan 2011 16:28:20.889] WARN  [Log4j]: WARN created: Tue Jan 25 16:28:20 CET 2011 duration: 0
+ connection: 1415 statement: 1103 resultset: -1 message: PreparedStatement created, but used 1
+ or fewer times. It is more efficient to prepare statements once, and re-use them many times
+ 
+ [25 Jan 2011 16:28:50.895] INFO  [Log4j]: ** Performance Metrics Report ** 
+ Longest reported query: 51 ms
+ Shortest reported query: 1 ms
+ Average query execution time: 2.6352201257861636 ms
+ Number of statements executed: 159
+ Number of result sets created: 151
+ Number of statements prepared: 0
+ Number of prepared statement executions: 0
+        Timing Histogram:
+        less than 3 ms:         6       
+        Table Join Histogram:
+        2 tables or less:               151     ********************
+</pre>
+
+h1. LICENSE
+
+<pre>
+ Copyright (c) 2011, Brane F. Gracnar
+ All rights reserved.
+
+ Redistribution and use in source and binary forms, with or without modification,
+ are permitted provided that the following conditions are met:
+ 
+   * Redistributions of source code must retain the above copyright notice, this list
+     of conditions and the following disclaimer.
+   
+   * Redistributions in binary form must reproduce the above copyright notice, this
+     list of conditions and the following disclaimer in the documentation and/or
+     other materials provided with the distribution.
+   
+   * Neither the name of the <ORGANIZATION> nor the names of its contributors may be used 
+     to endorse or promote products derived from this software without specific prior 
+     written permission.
+
+ 
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
+ OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+ SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+ INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+ TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR 
+ BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+ ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+ OF SUCH DAMAGE.
+</pre>
