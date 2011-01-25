@@ -1,0 +1,80 @@
+=head1 NAME
+
+mysql-connector-java-log :: Log4j and SLF4j implementation of MySQL Connector/J (JDBC) logging interface.
+
+=head1 DESCRIPTION
+
+This package implements Log4j (L<http://logging.apache.org/log4j/1.2/>) and SLF4j
+(L<http://www.slf4j.org/>) logging interface of MySQL Connector/J
+(L<http://dev.mysql.com/downloads/connector/j/>) JDBC driver.
+
+=head1 BUILD
+
+You need Maven2 L<http://maven.apache.org> to build this package.
+
+To build, enter source directory, and type:
+
+ mvn clean package
+
+JAR is placed in B<target/> directory.
+
+=head2 DEPLOY
+
+Install JAR file in Java application's CLASSPATH, configure MySQL JDBC connector's
+URL and optionally configure your logger (this mostly applies to Log4j).
+
+=head1 IMPLEMENTATIONS
+
+=head2 Log4j
+
+=head2 SLF4j
+
+=head1 SAMPLE OUTPUT
+
+ [25 Jan 2011 16:28:20.889] WARN  [Log4j]: WARN created: Tue Jan 25 16:28:20 CET 2011 duration: 0 connection: 1415 statement: 1103
+                            resultset: -1 message: PreparedStatement created, but used 1 or fewer times.
+                            It is more efficient to prepare statements once, and re-use them many times
+ [25 Jan 2011 16:28:50.895] INFO  [Log4j]: ** Performance Metrics Report ** 
+ Longest reported query: 51 ms
+ Shortest reported query: 1 ms
+ Average query execution time: 2.6352201257861636 ms
+ Number of statements executed: 159
+ Number of result sets created: 151
+ Number of statements prepared: 0
+ Number of prepared statement executions: 0
+        Timing Histogram:
+        less than 3 ms:         6       
+        Table Join Histogram:
+        2 tables or less:               151     ********************
+
+=head1 LICENSE
+
+ Copyright (c) 2011, Brane F. Gracnar
+ All rights reserved.
+
+ Redistribution and use in source and binary forms, with or without modification,
+ are permitted provided that the following conditions are met:
+ 
+   * Redistributions of source code must retain the above copyright notice, this list
+     of conditions and the following disclaimer.
+   
+   * Redistributions in binary form must reproduce the above copyright notice, this
+     list of conditions and the following disclaimer in the documentation and/or
+     other materials provided with the distribution.
+   
+   * Neither the name of the <ORGANIZATION> nor the names of its contributors may be used 
+     to endorse or promote products derived from this software without specific prior 
+     written permission.
+ 
+ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY 
+ EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES 
+ OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT
+ SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, 
+ INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
+ TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR 
+ BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN 
+ ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+ OF SUCH DAMAGE.
+
+=cut
