@@ -35,10 +35,12 @@ h1. IMPLEMENTATIONS
 
 h2. Log4j
 
-Log4j configuration:
+h3. Log4j configuration:
+
+Add appender and new logger section to *log4j.properties*.
 
 <pre>
- # set logging level and appender
+ # set logging level and appender for mysql logging class
  log4j.logger.si.planet9.mysql=DEBUG, appMySQL
  
  # configure mysql appender
@@ -49,19 +51,27 @@ Log4j configuration:
  log4j.appender.appMySQL.layout.ConversionPattern=[%d{dd MMM yyyy HH:mm:ss.SSS}] %-5p [%c{1}]: %m%n
 </pre>
 
-JDBC configuration:
+h3. JDBC configuration
+
+Add *logger=si.planet9.mysql.log.Log4j* to JDBC URL.
+
+Example:
 <pre><code>
  jdbc.class=com.mysql.jdbc.Driver
- jdbc.url=jdbc:mysql://localhost:3306/database?autoReconnect=true&logSlowQueries=true&slowQueryThresholdMillis=500&dumpQueriesOnException=true&gatherPerfMetrics=true&useUsageAdvisor=true&explainSlowQueries=true&reportMetricsIntervalMillis=60000&logger=si.planet9.mysql.Log4j
+ jdbc.url=jdbc:mysql://localhost:3306/database?autoReconnect=true&logSlowQueries=true&slowQueryThresholdMillis=500&dumpQueriesOnException=true&gatherPerfMetrics=true&useUsageAdvisor=true&explainSlowQueries=true&reportMetricsIntervalMillis=60000&logger=si.planet9.mysql.log.Log4j
 </code></pre>
 
 h2. SLF4j
 
-JDBC configuration:
-<pre>
+h3. JDBC configuration
+
+Add *logger=si.planet9.mysql.log.Slf4j* to JDBC URL.
+
+Example:
+<pre><code>
  jdbc.class=com.mysql.jdbc.Driver
- jdbc.url=jdbc:mysql://localhost:3306/database?autoReconnect=true&logSlowQueries=true&slowQueryThresholdMillis=500&dumpQueriesOnException=true&gatherPerfMetrics=true&useUsageAdvisor=true&explainSlowQueries=true&reportMetricsIntervalMillis=60000&logger=si.planet9.mysql.Slf4j
-</pre>
+ jdbc.url=jdbc:mysql://localhost:3306/database?autoReconnect=true&logSlowQueries=true&slowQueryThresholdMillis=500&dumpQueriesOnException=true&gatherPerfMetrics=true&useUsageAdvisor=true&explainSlowQueries=true&reportMetricsIntervalMillis=60000&logger=si.planet9.mysql.log.Slf4j
+</code></pre>
 
 h1. SAMPLE LOGGING OUTPUT
 
