@@ -4,13 +4,13 @@ mysql-connector-java-log :: Log4j and SLF4j implementation of MySQL Connector/J 
 
 =head1 DESCRIPTION
 
-This package implements Log4j (L<http://logging.apache.org/log4j/1.2/>) and SLF4j
-(L<http://www.slf4j.org/>) logging interface of MySQL Connector/J
-(L<http://dev.mysql.com/downloads/connector/j/>) JDBC driver.
+This package implements L<Log4j|http://logging.apache.org/log4j/1.2/> and
+L<SLF4j|http://www.slf4j.org/> logging interface of
+L<MySQL Connector/J|http://dev.mysql.com/downloads/connector/j/> JDBC driver.
 
 =head1 BUILD
 
-You need Maven2 L<http://maven.apache.org> to build this package.
+You need L<Maven|http://maven.apache.org> to build this package.
 
 To build, enter source directory, and type:
 
@@ -29,11 +29,13 @@ URL and optionally configure your logger (this mostly applies to Log4j).
 
 =head2 SLF4j
 
-=head1 SAMPLE OUTPUT
+=head1 SAMPLE LOGGING OUTPUT
 
- [25 Jan 2011 16:28:20.889] WARN  [Log4j]: WARN created: Tue Jan 25 16:28:20 CET 2011 duration: 0 connection: 1415 statement: 1103
-                            resultset: -1 message: PreparedStatement created, but used 1 or fewer times.
-                            It is more efficient to prepare statements once, and re-use them many times
+Sample output by log4j:
+
+ [25 Jan 2011 16:28:20.889] WARN  [Log4j]: WARN created: Tue Jan 25 16:28:20 CET 2011 duration: 0
+ connection: 1415 statement: 1103 resultset: -1 message: PreparedStatement created, but used 1
+ or fewer times. It is more efficient to prepare statements once, and re-use them many times
  [25 Jan 2011 16:28:50.895] INFO  [Log4j]: ** Performance Metrics Report ** 
  Longest reported query: 51 ms
  Shortest reported query: 1 ms
